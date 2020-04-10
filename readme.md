@@ -1,4 +1,4 @@
-# superFunc
+# superFunc UI
 
 Library by Alex Merced of AlexMercedCoder.com (AlexMercedCoder.com/jslib)
 
