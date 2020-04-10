@@ -19,25 +19,24 @@ const captureProps = (element) => {
 
 const superFunc = (config) => {
     const globals = {};
+    let state = config.state;
+
     const creator = (id, initialState) => {
-        let state = initialState;
         const target = document.querySelector(`[sfunc=${id}]`);
         let props = captureProps(target);
         target.innerHTML = config.builder(state, props, globals);
         config.mount ? config.mount(state, props, target, globals) : null;
-
+        globals.setState = (newState) => {
+            state = newState;
+            props = captureProps(target);
+            target.innerHTML = config.builder(state, props, target, globals);
+            config.update ? config.update(state, props, target, globals) : null;
+            return config.hookGen
+                ? config.hookGen(state, props, target, globals)
+                : null;
+        };
         return [
-            (newState) => {
-                state = newState;
-                props = captureProps(target);
-                target.innerHTML = config.builder(state, props, globals);
-                config.update
-                    ? config.update(state, props, target, globals)
-                    : null;
-                return config.hookGen
-                    ? config.hookGen(state, props, target, globals)
-                    : null;
-            },
+            globals.setState,
             config.hookGen
                 ? config.hookGen(state, props, target, globals)
                 : null

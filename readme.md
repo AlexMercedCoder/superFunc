@@ -122,7 +122,7 @@ assemble(state, props, target, globals) => a function to run the constructors on
 
 hookGen(state, props, target, globals) => a function which can be used to return more support functions, this function is rerun at the end of setState to return updated versions of your hooks.
 
--   When the setState function is run it updates the state, then re-reruns the builder function, then the assemble is function is run to rebuild any custom components in your template and return updated hooks (since previous version of hooks would refer to old state).
+-   When the setState function is run it updates the state, then re-reruns the builder function, then the assemble is function is run to rebuild any custom components in your template and return updated hooks (since previous version of hooks would refer to old state). (globals also contains setState if you want to use it in any function that is passed, be careful not to trigger an infinite render look by using setState non-conditionally in function that is run on a re-render (builder, assemble, update))
 
 #### The four parameters above:
 
