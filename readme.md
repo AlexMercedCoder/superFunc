@@ -6,11 +6,47 @@ Library by Alex Merced of AlexMercedCoder.com (AlexMercedCoder.com/jslib)
 
 Alex Merced first created a front-end UI library using the Web Component API called MercedUI that gives you many of the features developers are used to in frameworks like React. Although, the Web Component API is still not fully supported in all browsers which is why the default is still to use frameworks like React, Angular and Vue. Is to make use of these frameworks often needs lots of tooling, transpilation, etc. to get full benefit from. superFunc is a library that provides some tools to build complex reactive front end UI with features like state and props but without the need for extra tooling or the web component API.
 
+## Installation
+
+### CDN
+
+```
+<script src="http://www.alexmercedcoder.com/sfunc.js" charset="utf-8" defer></script>
+```
+
+### NPM
+
+```
+npm i superfuncui
+```
+
+in your javascript file
+
+```
+const {superFunc} = require("superfuncui")
+```
+
+### ES6 Module
+
+index.html
+
+```
+<script type="module" src="app.js" charset="utf-8" defer></script>
+```
+
+app.js
+
+```
+import {superFunc} from "http://www.alexmercedcoder.com/sfuncmodule.js"
+
+```
+
 ## Getting started
 
 Essentially all you need in your HTML to get started
 
 ```
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -74,7 +110,7 @@ console.log(getState()); //seeing the updated state
 
 a config object is passed to the superFunc function which returns a creator function to create instances of that component. The creator function initially renders the component and returns an array where the first element is the setState function for changing the state and the second element is whatever is returned by the hookGen function if exists.
 
-the config object takes 4 properties
+#### the config object takes 4 properties
 
 mount(state, props, target, globals) => function that runs after builder the first time
 
@@ -88,7 +124,8 @@ hookGen(state, props, target, globals) => a function which can be used to return
 
 -   When the setState function is run it updates the state, then re-reruns the builder function, then the assemble is function is run to rebuild any custom components in your template and return updated hooks (since previous version of hooks would refer to old state).
 
-The four parameters above:
+#### The four parameters above:
+
 state: internal data to your component when updated via the setState function will re-render your components
 props: data passed as properties of the target element
 target: the target element with the sfunc attribute
