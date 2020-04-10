@@ -30,8 +30,12 @@ const superFunc = (config) => {
             (newState) => {
                 state = newState;
                 props = captureProps(target);
+                target.innerHTML = config.builder(state, props, globals);
                 config.update
                     ? config.update(state, props, target, globals)
+                    : null;
+                return config.hookGen
+                    ? config.hookGen(state, props, target, globals)
                     : null;
             },
             config.hookGen
