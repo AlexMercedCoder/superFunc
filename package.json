@@ -1,8 +1,8 @@
 {
-    "name": "superfunc",
+    "name": "superfuncui",
     "version": "1.0.0",
     "description": "Library by Alex Merced of AlexMercedCoder.com (AlexMercedCoder.com/jslib)",
-    "main": "app.js",
+    "main": "sfuncnpm.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
