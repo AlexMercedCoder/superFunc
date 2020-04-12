@@ -131,4 +131,8 @@ props: data passed as properties of the target element
 target: the target element with the sfunc attribute
 globals: an object of values that is accessible from all component functions, best way to pass info around from function to function.
 
+#### The Creator Function
+
+After running superFunc and passing in the config object you will be returned a creator function which takes the sfunc property of the target element for rendering and an object with any properties you'd like to pass on to the globals object. This function returns an array with the setState function as the first element and whatever the hookgen function may return as the second element.
+
 That's it, just use setState to update any components state it should re-render and it will work! just remember to invoke constructors in assemble of children that are custom components (refer to the assemble function of the component above.)

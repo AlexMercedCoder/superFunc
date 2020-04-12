@@ -18,14 +18,12 @@ const captureProps = (element) => {
 ////////////////////////
 
 export const superFunc = (config) => {
-    const creator = (id, initialState) => {
-        const globals = {};
+    const creator = (id, globalAddOns) => {
+        const globals = globalAddOns ? {...globalAddOns} : {};
         let state = config.state ? config.state : {};
         const target = document.querySelector(`[sfunc=${id}]`);
         let props = captureProps(target);
-        target.innerHTML = config.builder(state, props, globals);
-        config.assemble ? config.assemble(state, props, target, globals) : null;
-        config.mount ? config.mount(state, props, target, globals) : null;
+
         globals.setState = (newState) => {
             state = newState;
             props = captureProps(target);
@@ -38,6 +36,11 @@ export const superFunc = (config) => {
                 ? config.hookGen(state, props, target, globals)
                 : null;
         };
+        
+        target.innerHTML = config.builder(state, props, globals);
+        config.assemble ? config.assemble(state, props, target, globals) : null;
+        config.mount ? config.mount(state, props, target, globals) : null;
+        
         return [
             globals.setState,
             config.hookGen
