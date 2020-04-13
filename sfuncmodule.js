@@ -25,7 +25,7 @@ export const superFunc = (config) => {
         let props = captureProps(target);
 
         globals.setState = (newState) => {
-            state = newState;
+            state = {...state, ...newState};
             props = captureProps(target);
             target.innerHTML = config.builder(state, props, target, globals);
             config.assemble

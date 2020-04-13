@@ -1,6 +1,6 @@
 {
     "name": "superfuncui",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Library by Alex Merced of AlexMercedCoder.com (AlexMercedCoder.com/jslib)",
     "main": "sfuncnpm.js",
     "scripts": {
